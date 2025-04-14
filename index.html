@@ -36,10 +36,24 @@
                 font-size: 20px;
                 text-align: justify;
             }
-            
+            #myImage{
+                height: 100%;
+            }
+            #myDiv {
+                opacity: 0;
+                transition: opacity 2s ease-in-out;
+                position: absolute;
+            }
+
+            #myDiv.show {
+                opacity: 1;
+            }
         </style>
     </head>
-    <body>
+        <body onload="show();">
+            <div id = "myDiv">
+                <img id="myImage" src="img/load.gif">
+            </div>
         <section>
             <div id="title">
             <svg viewBox="0 0 900 900">
@@ -60,5 +74,15 @@
            </div>
          </div>
         </section>
+        <script>
+            function show() {
+    const loader = document.getElementById("myDiv");
+    loader.style.display = "block";
+    // Force reflow to trigger the transition
+    void loader.offsetWidth;
+    loader.classList.add("show");
+    setTimeout(hide, 1000); // Adjust time as needed
+}
+        </script>
     </body>
 </html>

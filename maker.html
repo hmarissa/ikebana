@@ -10,14 +10,22 @@
             #flower-buttons{
                 width: 100px;
             }
-            #arrangement-space div{
-                width: 500px;
+            body{
+                display: flex;
+            }
+            #arrangement-space div img{
+                width: 400px;
             }
             #arrangement-space{
                 width: 70%;
                 margin: auto;
-                
             }
+            #leaves-1 {
+            position: absolute;
+            top: 100px; /* or any desired starting position */
+            left: 100px;
+            display: none;
+        }
         </style>
     </head>
     <body>
@@ -42,14 +50,51 @@
             </div>
         </div>
         <div id="arrangement-space">
-            <div id="flower-1" style="display:none;">
-                <img src="img/flower-button-02.svg" alt="flower-1" >
+            <div id="leaves-1" class="mydiv" style="display:none;">
+                <img src="img/leaves-1.gif" alt="leaves-1" >
             </div>
         </div>
         <script>
             function showDiv() {
-   document.getElementById('flower-1').style.display = "block";
-}
+                const leaves = document.getElementById('leaves-1');
+                leaves.style.display = "block";
+        
+                // Wait for the GIF to finish (e.g., 3 seconds)
+                setTimeout(() => {
+                    dragElement(leaves);
+                }, 7000); // ← Replace 3000 with your GIF duration in ms
+            }
+        
+            function dragElement(elmnt) {
+                var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+                elmnt.style.position = "absolute"; // Make it draggable
+                elmnt.onmousedown = dragMouseDown;
+        
+                function dragMouseDown(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    document.onmouseup = closeDragElement;
+                    document.onmousemove = elementDrag;
+                }
+        
+                function elementDrag(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    pos1 = pos3 - e.clientX;
+                    pos2 = pos4 - e.clientY;
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+                }
+        
+                function closeDragElement() {
+                    document.onmouseup = null;
+                    document.onmousemove = null;
+                }
+            }
         </script>
     </body>
 </html>

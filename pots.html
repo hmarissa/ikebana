@@ -7,9 +7,7 @@
         <link href="css/styles.css" rel="stylesheet">
         <link rel="stylesheet" href="https://use.typekit.net/kmp3cag.css">
         <style>
-            #flower-buttons{
-                width: 100px;
-            }
+            
             body{
                 display: flex;
             }
@@ -29,41 +27,56 @@
         </style>
     </head>
     <body>
-        <div id="flower-buttons">
-            <div onclick="showDiv()">
-                <img src="img/flower-button-02.svg" alt="leaves">
+        <div class="buttons">
+            <div onclick="showDiv('leaves-1')">
+                <img src="img/pot-buttons-01.svg" alt="leaves-1">
             </div>
-            <div>
-                <img src="img/flower-button-03.svg" alt="leaves">
+            <div onclick="showDiv('flower-1')">
+                <img src="img/pot-buttons-02.svg" alt="flower-1">
             </div>
-            <div>
-                <img src="img/flower-button-04.svg" alt="leaves">
+            <div onclick="showDiv('flower-2')">
+                <img src="img/pot-buttons-03.svg" alt="flower-2">
             </div>
-            <div>
-                <img src="img/flower-button-05.svg" alt="leaves">
+            <div onclick="showDiv('flower-3')">
+                <img src="img/pot-buttons-04.svg" alt="flower-3">
             </div>
-            <div>
-                <img src="img/flower-button-06.svg" alt="leaves">
+            <div onclick="showDiv('flower-4')">
+                <img src="img/pot-buttons-05.svg" alt="flower-4">
             </div>
-            <div>
-                <img src="img/flower-button-07.svg" alt="leaves">
+            <div onclick="showDiv('flower-5')">
+                <img src="img/pot-buttons-06.svg" alt="flower-5">
             </div>
         </div>
         <div id="arrangement-space">
             <div id="leaves-1" class="mydiv" style="display:none;">
-                <img src="img/leaves-1.gif" alt="leaves-1" >
+                <img src="img/leaves-1.gif" alt="leaves-1">
+            </div>
+            <div id="flower-1" class="mydiv" style="display:none;">
+                <img src="img/flower-1.gif" alt="flower-1">
+            </div>
+            <div id="flower-2" class="mydiv" style="display:none;">
+                <img src="img/flower-1.gif" alt="flower-2">
+            </div>
+            <div id="flower-3" class="mydiv" style="display:none;">
+                <img src="img/flower-1.gif" alt="flower-3">
+            </div>
+            <div id="flower-4" class="mydiv" style="display:none;">
+                <img src="img/flower-1.gif" alt="flower-4">
+            </div>
+            <div id="flower-5" class="mydiv" style="display:none;">
+                <img src="img/flower-1.gif" alt="flower-5">
             </div>
         </div>
         <script>
-            function showDiv() {
-                const leaves = document.getElementById('leaves-1');
-                leaves.style.display = "block";
-        
-                // Wait for the GIF to finish (e.g., 3 seconds)
-                setTimeout(() => {
-                    dragElement(leaves);
-                }, 7000); // ← Replace 3000 with your GIF duration in ms
-            }
+            function showDiv(id) {
+            const element = document.getElementById(id);
+            element.style.display = "block";
+
+            // Optional: make draggable after GIF completes
+            setTimeout(() => {
+                dragElement(element);
+            }, 7000); // adjust as needed per image
+        }
         
             function dragElement(elmnt) {
                 var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;

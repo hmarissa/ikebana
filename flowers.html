@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="img/flower-button-02.svg">
+        <title>Ikebana Maker</title>
+        <link href="css/styles.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.typekit.net/kmp3cag.css">
+        <style>
+           
+            body{
+                display: flex;
+            }
+            #arrangement-space div img{
+                width: 400px;
+            }
+            #arrangement-space{
+                width: 70%;
+                margin: auto;
+            }
+            #leaves-1 {
+            position: absolute;
+            top: 100px; /* or any desired starting position */
+            left: 100px;
+            display: none;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="buttons">
+            <div onclick="showDiv('leaves-1')">
+                <img src="img/flower-button-02.svg" alt="leaves-1">
+            </div>
+            <div onclick="showDiv('flower-1')">
+                <img src="img/flower-button-03.svg" alt="flower-1">
+            </div>
+            <div onclick="showDiv('flower-2')">
+                <img src="img/flower-button-04.svg" alt="flower-2">
+            </div>
+            <div onclick="showDiv('flower-3')">
+                <img src="img/flower-button-05.svg" alt="flower-3">
+            </div>
+            <div onclick="showDiv('flower-4')">
+                <img src="img/flower-button-06.svg" alt="flower-4">
+            </div>
+            <div onclick="showDiv('flower-5')">
+                <img src="img/flower-button-07.svg" alt="flower-5">
+            </div>
+        </div>
+        <div id="arrangement-space">
+            <div id="leaves-1" class="mydiv" style="display:none;">
+                <img src="img/leaves-1.gif" alt="leaves-1">
+            </div>
+            <div id="flower-1" class="mydiv" style="display:none;">
+                <img src="img/flower-1.gif" alt="flower-1">
+            </div>
+            <div id="flower-2" class="mydiv" style="display:none;">
+                <img src="img/flower-1.gif" alt="flower-2">
+            </div>
+            <div id="flower-3" class="mydiv" style="display:none;">
+                <img src="img/flower-1.gif" alt="flower-3">
+            </div>
+            <div id="flower-4" class="mydiv" style="display:none;">
+                <img src="img/flower-1.gif" alt="flower-4">
+            </div>
+            <div id="flower-5" class="mydiv" style="display:none;">
+                <img src="img/flower-1.gif" alt="flower-5">
+            </div>
+        </div>
+        <div class="instructions">
+            <h2>flowers</h2>
+            <p>Select the flowers for your bouquet by clicking on a button. Try to go for balance and variety! Then, drag the flowers to arrange them in the pot.
+            </p>
+        </div>
+        <script>
+            function showDiv(id) {
+            const element = document.getElementById(id);
+            element.style.display = "block";
+
+            // Optional: make draggable after GIF completes
+            setTimeout(() => {
+                dragElement(element);
+            }, 7000); // adjust as needed per image
+        }
+        
+            function dragElement(elmnt) {
+                var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+                elmnt.style.position = "absolute"; // Make it draggable
+                elmnt.onmousedown = dragMouseDown;
+        
+                function dragMouseDown(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    document.onmouseup = closeDragElement;
+                    document.onmousemove = elementDrag;
+                }
+        
+                function elementDrag(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    pos1 = pos3 - e.clientX;
+                    pos2 = pos4 - e.clientY;
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+                }
+        
+                function closeDragElement() {
+                    document.onmouseup = null;
+                    document.onmousemove = null;
+                }
+            }
+        </script>
+    </body>
+</html>

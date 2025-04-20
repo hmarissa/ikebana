@@ -10,20 +10,24 @@
            
             body{
                 display: flex;
+                justify-content: space-evenly;
+            }
+            #arrangement-space div{
+                position: absolute;
             }
             #arrangement-space div img{
-                width: 400px;
+                display: block;
+                width: 25vw;
             }
             #arrangement-space{
-                width: 70%;
-                margin: auto;
+                width: 65%;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
             }
-            #leaves-1 {
-            position: absolute;
-            top: 100px; /* or any desired starting position */
-            left: 100px;
-            display: none;
-        }
+          
         </style>
     </head>
     <body>
@@ -55,22 +59,21 @@
                 <img src="img/flower-1.gif" alt="flower-1">
             </div>
             <div id="flower-2" class="mydiv" style="display:none;">
-                <img src="img/flower-1.gif" alt="flower-2">
+                <img src="img/flower-2.gif" alt="flower-2">
             </div>
             <div id="flower-3" class="mydiv" style="display:none;">
-                <img src="img/flower-1.gif" alt="flower-3">
+                <img src="img/flower-3.gif" alt="flower-3">
             </div>
             <div id="flower-4" class="mydiv" style="display:none;">
-                <img src="img/flower-1.gif" alt="flower-4">
+                <img src="img/flower-4.gif" alt="flower-4">
             </div>
             <div id="flower-5" class="mydiv" style="display:none;">
-                <img src="img/flower-1.gif" alt="flower-5">
+                <img src="img/flower-5.gif" alt="flower-5">
             </div>
         </div>
         <div class="instructions">
             <h2>flowers</h2>
-            <p>Select the flowers for your bouquet by clicking on a button. Try to go for balance and variety! Then, drag the flowers to arrange them in the pot.
-            </p>
+            <p>Select the flowers for your bouquet by clicking on a button. Try to go for balance and variety! Then, drag the flowers to arrange them in the pot.</p>
         </div>
         <script>
             function showDiv(id) {

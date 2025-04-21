@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="img/flower-button-02.svg">
+        <title>Choose a Vase</title>
+        <link href="css/styles.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.typekit.net/kmp3cag.css">
+        <style>
+            
+            body{
+                display: flex;
+                justify-content: space-evenly;
+            }
+            #arrangement-space div{
+                position: absolute;
+            }
+            #arrangement-space div img{
+                display: block;
+                width: 15vw;
+            }
+            #arrangement-space{
+                width: 65%;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="buttons">
+            <div onclick="showDiv('pot-1')">
+                <img src="img/pot-buttons-01.svg" alt="pot-1">
+            </div>
+            <div onclick="showDiv('flower-1')">
+                <img src="img/pot-buttons-02.svg" alt="flower-1">
+            </div>
+            <div onclick="showDiv('flower-2')">
+                <img src="img/pot-buttons-03.svg" alt="flower-2">
+            </div>
+            <div onclick="showDiv('flower-3')">
+                <img src="img/pot-buttons-04.svg" alt="flower-3">
+            </div>
+            <div onclick="showDiv('flower-4')">
+                <img src="img/pot-buttons-05.svg" alt="flower-4">
+            </div>
+            <div onclick="showDiv('flower-5')">
+                <img src="img/pot-buttons-06.svg" alt="flower-5">
+            </div>
+        </div>
+        <div id="arrangement-space">
+            <div id="pot-1" class="mydiv" style="display:none;">
+                <img src="img/pot-2.gif" alt="pot-1">
+            </div>
+            <div id="flower-1" class="mydiv" style="display:none;">
+                <img src="img/flower-1.gif" alt="flower-1">
+            </div>
+            <div id="flower-2" class="mydiv" style="display:none;">
+                <img src="img/flower-1.gif" alt="flower-2">
+            </div>
+            <div id="flower-3" class="mydiv" style="display:none;">
+                <img src="img/flower-1.gif" alt="flower-3">
+            </div>
+            <div id="flower-4" class="mydiv" style="display:none;">
+                <img src="img/flower-1.gif" alt="flower-4">
+            </div>
+            <div id="flower-5" class="mydiv" style="display:none;">
+                <img src="img/flower-1.gif" alt="flower-5">
+            </div>
+        </div>
+        <div class="instructions">
+            <h2>Vases</h2>
+            <p>The shape of a vase can play a large role in the way flowers will sit, and in the overall composition of your flower arrangement. Tip: A round vase with a wider bottom is the most versatile choice, but a unique silhouette enhances visual impact! </p>
+            <p>Choose one by clicking on a button!</p>
+            <div>
+                <a href="flowers.html"><img src="img/arrow.svg" alt="next"></a>
+            </div>
+        </div>
+        <script>
+            function showDiv(id) {
+            const element = document.getElementById(id);
+            element.style.display = "block";
+
+            // Store selected ID in localStorage
+            localStorage.setItem("selectedVase", id);
+
+            setTimeout(() => {
+                dragElement(element);
+            }, 7000); // adjust as needed per image
+        }
+
+        
+            function dragElement(elmnt) {
+                var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+                elmnt.style.position = "absolute"; // Make it draggable
+                elmnt.onmousedown = dragMouseDown;
+        
+                function dragMouseDown(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    document.onmouseup = closeDragElement;
+                    document.onmousemove = elementDrag;
+                }
+        
+                function elementDrag(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    pos1 = pos3 - e.clientX;
+                    pos2 = pos4 - e.clientY;
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+                }
+        
+                function closeDragElement() {
+                    document.onmouseup = null;
+                    document.onmousemove = null;
+                }
+            }
+        </script>
+    </body>
+</html>

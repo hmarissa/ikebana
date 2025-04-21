@@ -3,7 +3,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/x-icon" href="img/flower-button-02.svg">
-        <title>Ikebana Maker</title>
+        <title>Arrange the Flowers</title>
         <link href="css/styles.css" rel="stylesheet">
         <link rel="stylesheet" href="https://use.typekit.net/kmp3cag.css">
         <style>
@@ -75,7 +75,48 @@
             <h2>flowers</h2>
             <p>Select the flowers for your bouquet by clicking on a button. Try to go for balance and variety! Then, drag the flowers to arrange them in the pot.</p>
         </div>
+
         <script>
+           window.addEventListener("DOMContentLoaded", () => {
+        const selectedVaseId = localStorage.getItem("selectedVase");
+        console.log("selectedVaseId:", selectedVaseId);
+
+        if (selectedVaseId) {
+            const imageSrcMap = {
+                "pot-1": "img/pot1.png",
+                "flower-1": "img/flower-1.gif",
+                "flower-2": "img/flower-2.gif",
+                "flower-3": "img/flower-3.gif",
+                "flower-4": "img/flower-4.gif",
+                "flower-5": "img/flower-5.gif"
+            };
+
+            const imgSrc = imageSrcMap[selectedVaseId];
+
+            if (imgSrc) {
+                const container = document.getElementById("arrangement-space");
+
+                const div = document.createElement("div");
+                div.style.position = "absolute";
+
+                const img = document.createElement("img");
+                img.src = imgSrc;
+                img.alt = selectedVaseId;
+                img.style.width = "15vw";
+                img.style.display = "block";
+                img.style.alignContent ="flex-end"
+
+                div.appendChild(img);
+                container.appendChild(div);
+            } else {
+                console.warn("Image source not found for:", selectedVaseId);
+            }
+        } else {
+            console.warn("No vase selected.");
+        }
+    });
+
+
             function showDiv(id) {
             const element = document.getElementById(id);
             element.style.display = "block";

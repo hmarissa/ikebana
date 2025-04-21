@@ -6,7 +6,9 @@ p{
     font-size: 20px;
     text-align: justify;
     line-height: 1.3;
-    
+    font-family: "calendula", sans-serif;
+font-weight: 400;
+font-style: normal;
 }
 h2{
     text-transform: uppercase;
@@ -23,11 +25,22 @@ h2{
     top: 10%;
     left: 2%;
 }
+.buttons img:hover{
+    background-color:#d2d49c;
+    border-radius: 10px;
+}
 .instructions{
     width: 15vw;
     padding-right: 2vw;
-    /* justify-content: flex-end; */
     position: absolute;
     bottom: 20vh;
     right: 0;
+}
+.instructions div{
+   padding-top: 5vh;
+    width:8vw;
+}
+.instructions img:hover{
+    background-color:#d2d49c;
+    border-radius: 10px;
 }

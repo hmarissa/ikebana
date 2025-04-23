@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="img/flower-button-02.svg">
+        <title>Ikebana Maker</title>
+        <link href="css/styles.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.typekit.net/kmp3cag.css">
+        <style>
+            body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Needed to center vertically */
+            margin: 0; /* Remove default margin */
+            background-color: #e4e6b3;
+        }
+          svg{
+             width: 60vw;
+            height: 300px;
+            display: block;
+            margin: auto;
+            padding-bottom: 10vh;
+          }
+          textPath{
+            color: #480C3F;
+          }
+            text{
+                font-size: 200px;
+                text-anchor: middle;
+                font-family: "campaign-serif", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+            .intro-text{
+                display: flex;
+                width: 40vw;
+                gap: 5vw;
+                
+                margin: auto;
+            }
+            .intro-text > div {
+                flex: 1;
+            }
+            main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2vw;
+            width: 98vw;
+            height: 95vh;
+            margin: auto;
+            background-color: #FEFFE4;
+        }
+            #myImage{
+                height: 100vh;
+                width: 100vw;
+            }
+            #myDiv {
+            opacity: 1;
+            transition: opacity 3s ease-in-out;
+            position: absolute;
+            pointer-events: none;
+        }
+
+        #myDiv.fade-out {
+            opacity: 0;
+        }
+            .flower img{
+                height: 85vh;
+            }
+            #title{
+                width: 30vw;
+                margin: auto;
+                padding-bottom: 5vh;
+            }
+            #intro{
+                padding-top: 5vh;
+               
+            }
+            a img{
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 25%;
+                margin-top: 5vh;
+            }
+        </style>
+    </head>
+        <body onload="show();">
+            <div id = "myDiv">
+                <img id="myImage" src="img/load.gif">
+            </div>
+        <main  id="finalArrangementDisplay">
+                <div id="finalArrangementDisplay" style="position: relative; width: 40vw; height: 70vh;">
+                    <!-- Vase and flowers will be inserted here by JavaScript -->
+                </div>
+            
+        </main>
+        <script>
+            function show() {
+                const loader = document.getElementById("myDiv");
+                loader.style.display = "block";
+                setTimeout(() => {
+                    loader.classList.add("fade-out");
+                }, 3000);
+                setTimeout(() => {
+                    loader.style.display = "none";
+                }, 5000);
+            }
+            
+            window.addEventListener("DOMContentLoaded", () => {
+                const display = document.querySelector("main");
+            
+                // --- Vase Rendering ---
+                const selectedVaseId = localStorage.getItem("selectedVase");
+                const vaseMap = {
+                    "pot-1": "img/vase1.png",
+                "flower-1": "img/vase-02.png",
+                "flower-2": "img/vase-03.png",
+                "flower-3": "img/vase-04.png",
+                "flower-4": "img/vase-05.png",
+                "flower-5": "img/vase-06.png"
+                };
+            
+                if (selectedVaseId && vaseMap[selectedVaseId]) {
+                    const vaseImg = document.createElement("img");
+                    vaseImg.src = vaseMap[selectedVaseId];
+                    vaseImg.alt = "vase";
+                    vaseImg.style.position = "absolute";
+                    vaseImg.style.bottom = "0";
+                    vaseImg.style.left = "50%";
+                    vaseImg.style.transform = "translateX(-50%)";
+                    vaseImg.style.width = "20vw";
+                    vaseImg.style.zIndex = "0";
+                    display.appendChild(vaseImg);
+                }
+            
+                // --- Flower Rendering ---
+                const flowerData = JSON.parse(localStorage.getItem("finalArrangement")) || [];
+            
+                flowerData.forEach(flower => {
+                    const flowerImg = document.createElement("img");
+                    flowerImg.src = flower.src;
+                    flowerImg.alt = "flower";
+                    flowerImg.style.position = "absolute";
+                    flowerImg.style.top = flower.top;
+                    flowerImg.style.left = flower.left;
+                    flowerImg.style.width = "20vw";
+                    flowerImg.style.zIndex = "1";
+                    display.appendChild(flowerImg);
+                });
+            });
+            </script>
+            
+    </body>
+</html>

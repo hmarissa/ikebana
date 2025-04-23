@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="icons_title" data-name="icons + title" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 577.71 168.89">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #480d3f;
+        font-family: CampaignSerif-Medium, 'Campaign Serif';
+        font-size: 117px;
+        font-weight: 500;
+      }
+    </style>
+  </defs>
+  <text class="cls-1" transform="translate(40.4 160.67) rotate(-28.01)"><tspan x="0" y="0">I</tspan></text>
+  <text class="cls-1" transform="translate(75.06 140.28) rotate(-20.78)"><tspan x="0" y="0">K</tspan></text>
+  <text class="cls-1" transform="translate(159.63 108.36) rotate(-11.79)"><tspan x="0" y="0">E</tspan></text>
+  <text class="cls-1" transform="translate(237.02 92.04) rotate(-2.81)"><tspan x="0" y="0">B</tspan></text>
+  <text class="cls-1" transform="translate(315.64 87.53) rotate(6.33)"><tspan x="0" y="0">A</tspan></text>
+  <text class="cls-1" transform="translate(402.15 96.81) rotate(15.96)"><tspan x="0" y="0">N</tspan></text>
+  <text class="cls-1" transform="translate(486.04 120.5) rotate(25.34)"><tspan x="0" y="0">A</tspan></text>
+</svg>

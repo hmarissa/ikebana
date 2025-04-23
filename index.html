@@ -7,11 +7,14 @@
         <link href="css/styles.css" rel="stylesheet">
         <link rel="stylesheet" href="https://use.typekit.net/kmp3cag.css">
         <style>
-            body{
-                justify-content: center;
-                display: flex;
-                
-            }
+            body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Needed to center vertically */
+            margin: 0; /* Remove default margin */
+            background-color: #e4e6b3;
+        }
           svg{
              width: 60vw;
             height: 300px;
@@ -31,11 +34,21 @@
             }
             .intro-text{
                 display: flex;
-                width: 50vw;
+                width: 40vw;
                 gap: 5vw;
+                
                 margin: auto;
             }
-            
+            main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2vw;
+            width: 98vw;
+            height: 95vh;
+            margin: auto;
+            background-color: #FEFFE4;
+        }
             #myImage{
                 height: 100vh;
             }
@@ -48,32 +61,56 @@
             #myDiv.show {
                 opacity: 1;
             }
+            .flower img{
+                height: 85vh;
+            }
+            #title{
+                width: 30vw;
+                margin: auto;
+                padding-bottom: 5vh;
+            }
+            #intro{
+                padding-top: 5vh;
+               
+            }
+          
+            a img{
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 25%;
+                padding-top: 5vh;
+            }
         </style>
     </head>
         <body onload="show();">
             <div id = "myDiv">
                 <img id="myImage" src="img/load_1.gif">
             </div>
-        <section>
-            <div id="title">
-            <svg viewBox="0 0 900 900">
-            <path id="curve" d="M 0, 900 A 900, 900 0 0, 1 900, 900" fill="transparent"/>
-                <text>
-                    <textPath href="#curve" startOffset="50%">
-                        IKEBANA
-                    </textPath>
-                </text>
-             </svg>
-        </div>
-        <div class="intro-text">
-            <div>
+        <main>
+            <div class="flower">
+                <img src="img/homepage-08.svg">
+            </div>
+            <div id="intro">
+                <div id="title">
+                <img src="img/homepage-07.svg">
+                </div>
+                <div class="intro-text">
+                <div>
                 <p>Ikebana is the centuries-old Japanese art of arranging flowers. The practice, which roughly translates to “making flowers come alive,” uses carefully selected blossoms, greenery and other flora to convey a specific feeling or emotion to an observer – just as a painting or sculpture might.</p>
-           </div>
-           <div>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque fugit qui voluptates facere rerum, magnam veniam, aliquam perspiciatis molestiae doloribus exercitationem praesentium iure unde culpa laborum nulla modi beatae placeat.</p>
-           </div>
+                 </div>
+                <div>
+                <p> Welcome to the Ikebana Maker, where you become the artist and create your own floral arrangment. Follow the steps to build a one-of-a-kind creation that represents you. Click the button below to begin. </p>
+                </div>
+                </div>
+                <div>
+                    <a href="vases.html"><img src="img/arrow.svg" alt="next"></a>
+                </div>
+        </div>
+         <div class="flower">
+            <img src="img/homepage-09.svg">
          </div>
-        </section>
+        </main>
         <script>
 //             function show() {
 //     const loader = document.getElementById("myDiv");

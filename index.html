@@ -39,6 +39,9 @@
                 
                 margin: auto;
             }
+            .intro-text > div {
+                flex: 1;
+            }
             main {
             display: flex;
             justify-content: center;
@@ -56,6 +59,7 @@
                 opacity: 0;
                 transition: opacity 2s ease-in-out;
                 position: absolute;
+                pointer-events: none;
             }
 
             #myDiv.show {
@@ -73,13 +77,12 @@
                 padding-top: 5vh;
                
             }
-          
             a img{
                 display: block;
                 margin-left: auto;
                 margin-right: auto;
                 width: 25%;
-                padding-top: 5vh;
+                margin-top: 5vh;
             }
         </style>
     </head>

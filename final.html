@@ -15,33 +15,8 @@
             margin: 0; /* Remove default margin */
             background-color: #e4e6b3;
         }
-          svg{
-             width: 60vw;
-            height: 300px;
-            display: block;
-            margin: auto;
-            padding-bottom: 10vh;
-          }
-          textPath{
-            color: #480C3F;
-          }
-            text{
-                font-size: 200px;
-                text-anchor: middle;
-                font-family: "campaign-serif", sans-serif;
-                font-weight: 400;
-                font-style: normal;
-            }
-            .intro-text{
-                display: flex;
-                width: 40vw;
-                gap: 5vw;
-                
-                margin: auto;
-            }
-            .intro-text > div {
-                flex: 1;
-            }
+         
+            
             main {
             display: flex;
             justify-content: center;
@@ -66,6 +41,16 @@
         #myDiv.fade-out {
             opacity: 0;
         }
+        main {
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}
+
+/* This class will trigger the fade-in */
+main.fade-in {
+    opacity: 1;
+}
+
             .flower img{
                 height: 85vh;
             }
@@ -85,29 +70,62 @@
                 width: 25%;
                 margin-top: 5vh;
             }
+            #finalArrangementDisplay{
+                width: 65%;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            #save{
+                position: absolute;
+                right: 2vw;
+                top:0;
+            }
+            #save img{
+                width: 5.5vw;
+            }
+            #end-message{
+                position:absolute;
+                bottom:0;
+                right:2vw;
+            }
         </style>
     </head>
         <body onload="show();">
             <div id = "myDiv">
                 <img id="myImage" src="img/load.gif">
             </div>
-        <main  id="finalArrangementDisplay">
-                <div id="finalArrangementDisplay" style="position: relative; width: 40vw; height: 70vh;">
+        <main>
+                <div id="finalArrangementDisplay" >
                     <!-- Vase and flowers will be inserted here by JavaScript -->
                 </div>
-            
+                <div id="save">
+                    <a href="index.html"><img src="img/home.svg"> </a>
+                    <img src="img/save.svg" alt="save">
+                </div>
+                <div id="end-message">
+                    <p>Thank you for creating with Ikebana Maker. Save your image or start again.</p>
+                </div>
         </main>
         <script>
             function show() {
-                const loader = document.getElementById("myDiv");
-                loader.style.display = "block";
-                setTimeout(() => {
-                    loader.classList.add("fade-out");
-                }, 3000);
-                setTimeout(() => {
-                    loader.style.display = "none";
-                }, 5000);
-            }
+    const loader = document.getElementById("myDiv");
+    const mainContent = document.querySelector("main");
+
+    loader.style.display = "block";
+
+    setTimeout(() => {
+        loader.classList.add("fade-out");
+    }, 3000); // start fading out the loader
+
+    setTimeout(() => {
+        loader.style.display = "none";
+        mainContent.classList.add("fade-in"); // fade in the main content
+    }, 5000); // show content after loader is gone
+}
+
             
             window.addEventListener("DOMContentLoaded", () => {
                 const display = document.querySelector("main");
@@ -128,11 +146,11 @@
                     vaseImg.src = vaseMap[selectedVaseId];
                     vaseImg.alt = "vase";
                     vaseImg.style.position = "absolute";
-                    vaseImg.style.bottom = "0";
+                    vaseImg.style.bottom = "10vh";
                     vaseImg.style.left = "50%";
                     vaseImg.style.transform = "translateX(-50%)";
-                    vaseImg.style.width = "20vw";
-                    vaseImg.style.zIndex = "0";
+                    vaseImg.style.width = "15vw";
+                    vaseImg.style.zIndex = "10";
                     display.appendChild(vaseImg);
                 }
             
@@ -146,7 +164,8 @@
                     flowerImg.style.position = "absolute";
                     flowerImg.style.top = flower.top;
                     flowerImg.style.left = flower.left;
-                    flowerImg.style.width = "20vw";
+                    flowerImg.style.width = "25vw";
+                    flowerImg.style.transform = "translateX(70%)";
                     flowerImg.style.zIndex = "1";
                     display.appendChild(flowerImg);
                 });

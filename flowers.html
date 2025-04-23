@@ -95,7 +95,7 @@
             <p>Select the flowers for your bouquet by clicking on a button. Try to go for balance and variety! Then, drag the flowers to arrange them in the vase.</p>
                 <p> If you decide you don't want a flower in your arrangement, drag it off the bottom edge of the screen.</p>
             <div>
-                <a href="final.html" onclick="saveArrangement()"><img src="img/arrow.svg" alt="next"></a>
+                <a href="final.html" onclick="event.preventDefault(); saveArrangementAndRedirect();"><img src="img/arrow.svg" alt="next"></a>
             </div>
         </div>
 
@@ -139,18 +139,22 @@
         }
     });
 
-
     function showDiv(id) {
     const element = document.getElementById(id);
     element.style.display = "block";
     element.style.transform = "scale(1)";
     element.style.opacity = "1";
 
+    // Reset position to center (you can fine-tune these)
+    element.style.top = "20%";
+    element.style.left = "35%";
+
     // Optional: make draggable after GIF completes
     setTimeout(() => {
         dragElement(element);
     }, 7000); // adjust as needed per image
 }
+
 
         
 function dragElement(elmnt) {
@@ -169,17 +173,33 @@ function dragElement(elmnt) {
     }
 
     function elementDrag(e) {
-        e = e || window.event;
-        e.preventDefault();
+    e = e || window.event;
+    e.preventDefault();
 
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
 
-        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-    }
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+
+    // Check mouse Y position
+    const mouseY = e.clientY;
+    const screenHeight = window.innerHeight;
+    const threshold = screenHeight - 50; // 50px from bottom
+
+    if (mouseY > threshold) {
+    elmnt.style.transition = "transform 0.4s ease, opacity 0.4s ease";
+    elmnt.style.transform = "scale(0)";
+    elmnt.style.opacity = "0";
+    setTimeout(() => {
+        elmnt.style.display = "none";
+    }, 400);
+}
+
+}
+
 
     function closeDragElement() {
         document.onmouseup = null;
@@ -206,10 +226,13 @@ function saveArrangement() {
     items.forEach((item) => {
         if (item.style.display !== "none") {
             const img = item.querySelector("img");
+            const top = item.style.top || "50%";
+            const left = item.style.left || "50%";
+
             saved.push({
                 src: img.src,
-                top: item.style.top || item.style.transform?.match(/translateY\((.*?)\)/)?.[1] || "50%",
-                left: item.style.left || item.style.transform?.match(/translateX\((.*?)\)/)?.[1] || "50%"
+                top: top,
+                left: left
             });
         }
     });
@@ -218,6 +241,12 @@ function saveArrangement() {
 }
 
 
+function saveArrangementAndRedirect() {
+    saveArrangement(); // Save current positions
+    setTimeout(() => {
+        window.location.href = "final.html";
+    }, 100); // Slight delay to ensure save finishes
+}
         </script>
     </body>
 </html>

@@ -68,22 +68,22 @@
         </div>
         <div id="arrangement-space">
             <div id="pot-1" class="mydiv" style="display:none;">
-                <img src="img/pot-2.gif" alt="pot-1">
+                <img src="img/vase1.gif" alt="pot-1">
             </div>
             <div id="flower-1" class="mydiv" style="display:none;">
-                <img src="img/flower-1.gif" alt="flower-1">
+                <img src="img/vase2.gif" alt="flower-1">
             </div>
             <div id="flower-2" class="mydiv" style="display:none;">
-                <img src="img/flower-1.gif" alt="flower-2">
+                <img src="img/vase3.gif" alt="flower-2">
             </div>
             <div id="flower-3" class="mydiv" style="display:none;">
-                <img src="img/flower-1.gif" alt="flower-3">
+                <img src="img/vase4.gif" alt="flower-3">
             </div>
             <div id="flower-4" class="mydiv" style="display:none;">
-                <img src="img/flower-1.gif" alt="flower-4">
+                <img src="img/vase5.gif" alt="flower-4">
             </div>
             <div id="flower-5" class="mydiv" style="display:none;">
-                <img src="img/flower-1.gif" alt="flower-5">
+                <img src="img/vase6.gif" alt="flower-5">
             </div>
         </div>
         <div class="instructions">
@@ -99,13 +99,20 @@
         </div>
         <script>
             function showDiv(id) {
-            const element = document.getElementById(id);
-            element.style.display = "block";
-
-            // Store selected ID in localStorage
-            localStorage.setItem("selectedVase", id);
-
+                // Hide all vase elements
+                const allDivs = document.querySelectorAll('.mydiv');
+                allDivs.forEach(div => {
+                    div.style.display = "none";
+                });
+        
+                // Show the selected vase
+                const selected = document.getElementById(id);
+                selected.style.display = "block";
+        
+                // Store selected ID in localStorage
+                localStorage.setItem("selectedVase", id);
             }
         </script>
+        
     </body>
 </html>
